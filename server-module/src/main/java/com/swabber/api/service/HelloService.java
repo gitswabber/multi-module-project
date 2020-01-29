@@ -1,4 +1,4 @@
-package com.swabber.service;
+package com.swabber.api.service;
 
 import org.springframework.stereotype.Service;
 

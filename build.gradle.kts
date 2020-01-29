@@ -1,5 +1,7 @@
 plugins {
     id("com.bmuschko.docker-spring-boot-application") version "6.1.3" apply false
+    id("org.springframework.boot") version "2.2.4.RELEASE" apply false
+    id("io.spring.dependency-management") version "1.0.9.RELEASE" apply false
 }
 
 allprojects {

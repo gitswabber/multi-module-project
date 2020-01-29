@@ -1,6 +1,6 @@
-package com.swabber.controller;
+package com.swabber.api.controller;
 
-import com.swabber.service.HelloService;
+import com.swabber.api.service.HelloService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;

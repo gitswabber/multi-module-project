@@ -3,14 +3,14 @@ repositories {
 }
 
 plugins {
-    id("org.springframework.boot") version "2.2.4.RELEASE"
-    id("io.spring.dependency-management") version "1.0.9.RELEASE"
     id("net.ltgt.apt") version "0.21"
     id("net.ltgt.apt-idea") version "0.21"
     id("io.freefair.lombok") version "4.1.6"
 }
 
 apply {
+    plugin("org.springframework.boot")
+    plugin("io.spring.dependency-management")
     plugin("com.bmuschko.docker-spring-boot-application")
 }
 
