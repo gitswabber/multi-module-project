@@ -5,7 +5,7 @@ repositories {
 plugins {
     id("net.ltgt.apt") version "0.21"
     id("net.ltgt.apt-idea") version "0.21"
-    id("io.freefair.lombok") version "4.1.6"
+//    id("io.freefair.lombok") version "3.0.0"
 }
 
 apply {
@@ -22,6 +22,9 @@ dependencies {
 
     implementation("com.h2database:h2:${project.extra["h2.version"]}")
 
+    implementation("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
+
     implementation("org.mapstruct:mapstruct:${project.extra["mapstruct.version"]}")
     annotationProcessor("org.mapstruct:mapstruct-processor:${project.extra["mapstruct.version"]}")
 
@@ -32,6 +35,6 @@ dependencies {
     }
 }
 
-tasks.test {
+tasks.named<Test>("test") {
     useJUnitPlatform()
 }
