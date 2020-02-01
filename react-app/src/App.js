@@ -1,33 +1,39 @@
 import React, {Component} from 'react';
-import Contacts from "./components/contacts";
+import UserInformation from "./components/user-information";
 
 class App extends Component {
-  render() {
-    return (
-        <Contacts contacts={this.state.contacts}/>
-/*        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">Steve Jobs</h5>
-            <h6 className="card-subtitle mb-2 text-muted">steve@apple.com</h6>
-            <p className="card-text">Stay Hungry, Stay Foolish</p>
-          </div>
-        </div>*/
-    )
-  }
 
-  state = {
-      contacts: []
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            userInfo: []
+        };
+        this.searchUserList = this.searchUserList.bind(this);
+        console.log("App constructor.");
+    }
 
-  componentDidMount() {
-      // fetch('http://localhost:8080/hello')
-      fetch('http://jsonplaceholder.typicode.com/users')
-          .then(res => res.json())
-          .then((data) => {
-              this.setState({contacts: data})
-          })
-          .catch(console.log)
-  }
+    componentDidMount() {
+        console.log("Finished rendering App onto DOM.");
+    }
+
+    searchUserList() {
+        fetch('http://localhost:8080/api/v1/users')
+            .then(res => res.json())
+            .then((data) => {
+                this.setState({userInfo: data})
+            })
+            .catch(console.log)
+    }
+
+    render() {
+        return (
+            <div>
+                <h1 align="center">User List</h1>
+                <button onClick={this.searchUserList}>Search</button>
+                <UserInformation userInfo={this.state.userInfo}/>
+            </div>
+        )
+    }
 }
 
 export default App;
