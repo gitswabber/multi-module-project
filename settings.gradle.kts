@@ -6,5 +6,4 @@ pluginManagement {
 }
 
 rootProject.name = "multi-modules-project"
-include ("server-module", "ui-module")
-
+include ("server-module")
