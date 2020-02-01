@@ -1,0 +1,43 @@
+version: '3.7'
+services:
+  api-server:
+    container_name: spring-boot-example
+    build: .
+    image: spring-boot-example:0.0.1
+    environment:
+      # todo active profile
+      SPRING_PROFILES_ACTIVE: stg
+      ROOT_LOG_LEVEL: DEBUG
+      JAVA_TOOL_OPTIONS: -Xms1G -Xmx1G -Djava.security.egd=file:/dev/./urandom
+      TZ: Asia/Seoul
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - api-server
+      - ui-server
+
+  ui-server:
+    container_name: react-example
+    build:
+      context: react-app
+      dockerfile: Dockerfile
+      args:
+        API_BASE_URL: http://localhost:8080/api/v1
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - './react-app:/app'
+      - '/app/node_modules'
+    networks:
+      - ui-server
+    depends_on:
+      - api-server
+
+#volumes:
+#  db-data:
+
+networks:
+  api-server:
+  ui-server:

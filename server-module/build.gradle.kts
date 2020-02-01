@@ -44,6 +44,6 @@ docker {
         maintainer.set("doutorking@gmail.com")
         ports.set(listOf(8080))
         images.set(setOf("$dockerImageName:$dockerImageTag"))
-        jvmArgs.set(listOf("-Dspring.profiles.active=dev", "-Xmx1024m"))
+//        jvmArgs.set(listOf("-Dspring.profiles.active=dev", "-Xmx1024m"))
     }
 }
