@@ -1,3 +1,5 @@
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage;
+
 repositories {
     jcenter()
 }
@@ -35,15 +37,11 @@ tasks.named<Test>("test") {
     useJUnitPlatform()
 }
 
-val dockerImageName: String by extra { "spring-boot-example" }
-val dockerImageTag: String by extra { "0.0.1" }
+val dockerImageName: String by extra { "spring-module-example" }
+val dockerImageTag: String by extra { "0.0.3" }
 
-docker {
-    springBootApplication {
-        baseImage.set("openjdk:8-alpine")
-        maintainer.set("doutorking@gmail.com")
-        ports.set(listOf(8080))
-        images.set(setOf("$dockerImageName:$dockerImageTag"))
-//        jvmArgs.set(listOf("-Dspring.profiles.active=dev", "-Xmx1024m"))
-    }
+tasks.named<DockerBuildImage>("dockerBuildImage") {
+    inputDir.dir("./")
+    dockerFile.set(file("Dockerfile"))
+    images.set(setOf("$dockerImageName:$dockerImageTag"))
 }

@@ -2,8 +2,9 @@ version: '3.7'
 services:
   api-server:
     container_name: spring-boot-example
-    build: .
-    image: spring-boot-example:0.0.1
+    build:
+      context: server-module
+      dockerfile: Dockerfile
     environment:
       # todo active profile
       SPRING_PROFILES_ACTIVE: stg
@@ -13,6 +14,8 @@ services:
     restart: always
     ports:
       - 8080:8080
+    volumes:
+      - './server-module:/app'
     networks:
       - api-server
       - ui-server
