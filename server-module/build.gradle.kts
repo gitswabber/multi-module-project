@@ -41,7 +41,8 @@ val dockerImageName: String by extra { "spring-module-example" }
 val dockerImageTag: String by extra { "0.0.3" }
 
 tasks.named<DockerBuildImage>("dockerBuildImage") {
-    inputDir.dir("./")
+    inputDir.set(file("./"))
     dockerFile.set(file("Dockerfile"))
     images.set(setOf("$dockerImageName:$dockerImageTag"))
+//    noCache.set(true)
 }
