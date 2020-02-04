@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ReactPaginate from 'react-paginate';
 import UserInformation from "./components/user-information";
 
 class App extends Component {
@@ -6,7 +7,8 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userInfo: []
+            userInfo: [],
+            pageCount: 10
         };
         this.searchUserList = this.searchUserList.bind(this);
         console.log("App constructor.");
@@ -31,6 +33,19 @@ class App extends Component {
                 <h1 align="center">User List</h1>
                 <button onClick={this.searchUserList}>Search</button>
                 <UserInformation userInfo={this.state.userInfo}/>
+                <ReactPaginate
+                    previousLabel={'previous'}
+                    nextLabel={'next'}
+                    breakLabel={'...'}
+                    breakClassName={'break-me'}
+                    pageCount={this.state.pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={console.log("sdfsdfs")}
+                    containerClassName={'pagination'}
+                    subContainerClassName={'pages pagination'}
+                    activeClassName={'active'}
+                />
             </div>
         )
     }

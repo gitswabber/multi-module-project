@@ -5,6 +5,8 @@ services:
     build:
       context: server-module
       dockerfile: Dockerfile
+#    build: .
+#    image: spring-boot-example:0.0.1
     environment:
       # todo active profile
       SPRING_PROFILES_ACTIVE: stg
@@ -14,8 +16,8 @@ services:
     restart: always
     ports:
       - 8080:8080
-    volumes:
-      - './server-module:/app'
+#    volumes:
+#      - './server-module:/app'
     networks:
       - api-server
       - ui-server
